@@ -1,7 +1,7 @@
-CC= g++
+CC= gcc
 
 hwc: main.o web.o parse.o redis-slave.o
-	$(CC) -Wall -lcurl hiredis/libhiredis.so web.o main.o parse.o redis-slave.o -o hwc
+	$(CC) -Wall -o hwc web.o main.o parse.o redis-slave.o -lcurl -Lhiredis -lhiredis
 
 main.o: main.c
 	$(CC) main.c -Wall -c
@@ -30,7 +30,8 @@ makerun: hwc
 	./hwc
 
 deps:
-	@cd redis-2.2.12 && make
+#	removed redis.. since we can use ubuntu built in
+#	@cd redis-2.2.12 && make
 	@cd hiredis && make && make install
 	/sbin/ldconfig
 	@cd tests/cu && make

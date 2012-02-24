@@ -1,9 +1,9 @@
 # I have tested these instructions on ubuntu 10.04 and 10.10
 
 apt-get update
-apt-get install git-core tofrodos g++ libboost-dev libcurl3-dev make
+apt-get install git-core tofrodos g++ libboost-dev libcurl3-dev make redis-server
 
-git clone --recursive git://github.com/esromneb/sjsu-cs267.git
+git clone --recursive git://github.com/mikecrawford9/sjsu-cs267.git
 # the git command makes a new directory
 
 
@@ -16,6 +16,6 @@ make deps
 make
 make startdb > /dev/null &
 mkdir dirout
-echo "sadd urls http://www.reddit.com" | ./redis-cli
+echo "sadd urls http://www.reddit.com" | redis-cli
 ./hwc
 
